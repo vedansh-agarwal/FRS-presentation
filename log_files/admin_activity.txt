@@ -1,0 +1,14 @@
+This file keeps track of successful and unsuccessful admin login attempts and operations performed by the admin.
+
+24/07/2022, 09:55:01	Username: vedansh             	Admin Login successful.
+24/07/2022, 09:55:17	Username: vedansh             	Image with new user_id: a52f92a6-91cd-4b4f-bad8-8b0f224051ef input by the admin.
+24/07/2022, 09:55:42	Username: vedansh             	Admin created user with user_id: a52f92a6-91cd-4b4f-bad8-8b0f224051ef.
+24/07/2022, 09:59:17	Username: vedansh             	Admin Login successful.
+24/07/2022, 10:13:13	Username: vedansh             	Admin Login successful.
+24/07/2022, 11:41:06	Username: vedansh             	Admin Login successful.
+24/07/2022, 11:41:24	Username: vedansh             	Image with new user_id: b3452f83-dadd-4324-8641-ed3413685f9c input by the admin.
+24/07/2022, 11:41:33	Username: vedansh             	Admin created user with user_id: b3452f83-dadd-4324-8641-ed3413685f9c.
+24/07/2022, 11:41:51	Username: vedansh             	Admin Login successful.
+24/07/2022, 11:42:07	Username: vedansh             	Admin updated user with user_id: b3452f83-dadd-4324-8641-ed3413685f9c.
+24/07/2022, 11:52:41	Username: vedansh             	Admin Login successful.
+24/07/2022, 12:11:10	Username: vedansh             	Admin Login successful.

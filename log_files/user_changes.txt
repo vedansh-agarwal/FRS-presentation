@@ -1,0 +1,5 @@
+This file keeps track of changes made to user data in the system.
+
+24/07/2022, 09:55:42	User_id: a52f92a6-91cd-4b4f-bad8-8b0f224051ef	User created.
+24/07/2022, 11:41:33	User_id: b3452f83-dadd-4324-8641-ed3413685f9c	User created.
+24/07/2022, 11:42:07	User_id: b3452f83-dadd-4324-8641-ed3413685f9c	User details updated.
