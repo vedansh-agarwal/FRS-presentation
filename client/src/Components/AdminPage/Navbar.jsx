@@ -16,11 +16,11 @@ const Navbar = ({ setOptionAdd }) => {
     <>
       {/* <OptionAdd optionAdd={optionAdd} /> */}
       <Box sx={{ px: 3 }}>
-        <Grid container spacing={2} justifyContent='center' alignItems='center'>
+        <Grid container spacing={1} justifyContent='center' alignItems='center'>
           <Grid item xs={12} sm={5} md={7.5} lg={8}>
             <Typography variant='h4'>Teacher Page</Typography>
           </Grid>
-          <a href="http://localhost:8000/lobby.html"><button className="classjoinbutton">New Meet</button></a>
+          <a href="http://localhost:8000/lobby.html"><button className="classjoinbutton">Meet</button></a>
           <Grid
             item
             xs={6}
@@ -39,7 +39,7 @@ const Navbar = ({ setOptionAdd }) => {
               onClick={handleAdd}
               fullWidth
             >
-              Add Student
+              Student
             </Button>
           </Grid>
           <Grid item xs sx={{ display: "flex", justifyContent: "center" }}>

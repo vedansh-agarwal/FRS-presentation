@@ -92,7 +92,7 @@ const recognizeFace = async (req, res) => {
     fs.writeFileSync(imgpath, req.files.base_img.data);
   }
 
-  const process = spawnSync("python3", [recface, imgpath, fe_file, "admin"]);
+  const process = spawnSync("python3", [recface, user_id+extension, "temp"]);
   const finalResult = JSON.parse(String(process.stdout).replace(/'/g, '"'));
 
   if (

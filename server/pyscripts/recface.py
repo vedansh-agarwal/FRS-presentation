@@ -5,6 +5,7 @@ import sys
 import cv2
 import os
 
+frs_folder = os.path.abspath(os.path.join(__file__, os.pardir, os.pardir, os.pardir))
 config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "config.json")
 
 with open(config_file, 'r') as f:
@@ -14,9 +15,9 @@ threshold = configs['threshold']
 training_model = configs["model_1"]
 face_ratio = configs["face_ratio"]
 
-imgloc = str(sys.argv[1])
-fe_file = str(sys.argv[2])
-use_case = str(sys.argv[3])
+imgloc = os.path.join(frs_folder, "user_images", str(sys.argv[2]), str(sys.argv[1]))
+fe_file = os.path.join(frs_folder, "server", "face_encodings", "face_encodings.json")
+use_case = str(sys.argv[2])
 
 output = {'msg': ''}
 
@@ -34,13 +35,13 @@ elif len(face_locations) > 1:
     print(output)
     sys.exit()
 
-t, r, b, l = face_locations[0]
-h, w, c = im.shape
+# t, r, b, l = face_locations[0]
+# h, w, c = im.shape
 
-if (use_case != "user") and ((r-l)/w < face_ratio) and ((b-t)/h < face_ratio) and ((r - l) * (b - t) / (h * w) < face_ratio):
-    output['msg'] = 'reduce distance between face and camera'
-    print(output)
-    sys.exit()
+# if (use_case != "captures") and ((r-l)/w < face_ratio) and ((b-t)/h < face_ratio) and ((r - l) * (b - t) / (h * w) < face_ratio):
+#     output['msg'] = 'reduce distance between face and camera'
+#     print(output)
+#     sys.exit()
 
 with open(fe_file, 'r') as f:
     face_emb = json.load(f)

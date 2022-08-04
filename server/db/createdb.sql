@@ -145,4 +145,3 @@ DELIMITER ;
 
 /* Inserting dummy admin values */
 INSERT INTO `FRS-test`.`admin` (`username`, `password`) VALUES ('vedansh', 'password');
-INSERT INTO `FRS-test`.`admin` (`username`, `password`) VALUES ('sumedh', 'sudu_1000');

@@ -38,7 +38,7 @@ const recognizeUser = async (req, res) => {
     const base64str = base64img.substring(base64img.indexOf(",")+1);
     fs.writeFileSync(imgpath, base64str, "base64");
 
-    const process = spawnSync("python3", [recface, imgpath, fe_file, "user"]);
+    const process = spawnSync("python3", [recface, img, "captures"]);
     const finalResult = JSON.parse(String(process.stdout).replace(/'/g, '"'));
 
     if(finalResult.msg === "no face found" || finalResult.msg === "multiple faces found") {
