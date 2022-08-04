@@ -6,7 +6,7 @@ import cv2
 import os
 
 frs_folder = os.path.abspath(os.path.join(__file__, os.pardir, os.pardir, os.pardir))
-config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "config.json")
+config_file = os.path.join(frs_folder, "server", "pyscripts", "config.json")
 
 with open(config_file, 'r') as f:
     configs = json.load(f)
@@ -17,7 +17,7 @@ face_ratio = configs["face_ratio"]
 
 imgloc = os.path.join(frs_folder, "user_images", str(sys.argv[2]), str(sys.argv[1]))
 fe_file = os.path.join(frs_folder, "server", "face_encodings", "face_encodings.json")
-use_case = str(sys.argv[2])
+# use_case = str(sys.argv[2])
 
 output = {'msg': ''}
 
@@ -28,12 +28,30 @@ im = cv2.imread(imgloc)
 
 if len(face_locations) == 0:
     output['msg'] = 'no face found'
-    print(output)
-    sys.exit()
 elif len(face_locations) > 1:
     output['msg'] = 'multiple faces found'
-    print(output)
-    sys.exit()
+else:
+    with open(fe_file, 'r') as f:
+        face_emb = json.load(f)
+
+    known_faces = list(face_emb.keys())
+    known_face_encodings = list(face_emb.values())
+
+    face_encoding = fr.face_encodings(given_image, face_locations)
+    face_distances = fr.face_distance(known_face_encodings, face_encoding[0])
+    best_match = np.argmin(face_distances)
+
+    if(face_distances[best_match] < threshold):
+        output['msg'] = 'existing user'
+        output['user_id'] = known_faces[best_match]
+        output['face_encoding'] = known_face_encodings[best_match]
+    else:
+        output['msg'] = 'new user'
+        output['face_encoding'] = face_encoding[0].tolist()
+
+print(output)
+
+
 
 # t, r, b, l = face_locations[0]
 # h, w, c = im.shape
@@ -42,23 +60,3 @@ elif len(face_locations) > 1:
 #     output['msg'] = 'reduce distance between face and camera'
 #     print(output)
 #     sys.exit()
-
-with open(fe_file, 'r') as f:
-    face_emb = json.load(f)
-
-known_faces = list(face_emb.keys())
-known_face_encodings = list(face_emb.values())
-
-face_encoding = fr.face_encodings(given_image, face_locations)
-face_distances = fr.face_distance(known_face_encodings, face_encoding[0])
-best_match = np.argmin(face_distances)
-
-if(face_distances[best_match] < threshold):
-    output['msg'] = 'existing user'
-    output['user_id'] = known_faces[best_match]
-    output['face_encoding'] = known_face_encodings[best_match]
-else:
-    output['msg'] = 'new user'
-    output['face_encoding'] = face_encoding[0].tolist()
-
-print(output)
